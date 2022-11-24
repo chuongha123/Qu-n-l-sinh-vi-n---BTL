@@ -249,6 +249,17 @@ bool kiemTraNhapNam(string s) {
 	}
 	return false;
 }
+bool kiemTraNhapMaSo(string s) {
+	bool check = kiemTraNhapSo(s);
+	if (!check) {
+		return false;
+	}
+	int nam = stringToInt(s);
+	if (nam >= 0) {
+		return true;
+	}
+	return false;
+}
 double nhapDiem() {
 	string s;
 nhaplai:
@@ -275,6 +286,19 @@ nhaplai:
 	}
 	return stringToDouble(s);
 }
+int nhapMaso() {
+	string s;
+nhaplai:
+	cin >> s;
+	bool check = kiemTraNhapMaSo(s);
+	if (!check) {
+		TextColor(4);
+		cout << "Nhap lai:";
+		TextColor(7);
+		goto nhaplai;
+	}
+	return stringToDouble(s);
+}
 int nhapNam() {
 	string s;
 nhaplai:
@@ -292,7 +316,7 @@ nhaplai:
 int nhapMaSo(LINKED_LIST& ds, int size) {
 	int maSo;
 nhaplai:
-	cin >> maSo;
+	maSo = nhapMaso();
 	for (NODE* k = ds.pHead; k != NULL; k = k->next) {
 		if (maSo == k->data.maSo) {
 			TextColor(4);
